@@ -14,10 +14,7 @@
 
 return { -- Useful plugin to show you pending keybinds.
   'folke/which-key.nvim',
-  event = 'VimEnter', -- Sets the loading event to 'VimEnter'
-  ---@module 'which-key'
-  ---@type wk.Opts
-  ---@diagnostic disable-next-line: missing-fields
+  event = 'VeryLazy', -- Sets the loading event to 'VimEnter'
   opts = {
     -- delay between pressing a key and opening which-key (milliseconds)
     delay = 0,
@@ -33,6 +30,19 @@ return { -- Useful plugin to show you pending keybinds.
       { '<leader>t', group = '[T]oggle' },
       { '<leader>h', group = 'Git [H]unk', mode = { 'n', 'v' } },
       { '<leader>u', group = 'Color Scheme' },
+    },
+    triggers = {
+      { '<auto>', mode = 'nixsotc' },
+      { 'a', mode = { 'n', 'v' } },
+    },
+  },
+  keys = {
+    {
+      '<leader>?',
+      function()
+        require('which-key').show {}
+      end,
+      desc = 'Buffer Local Keymaps (which-key)',
     },
   },
 }
