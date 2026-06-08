@@ -25,7 +25,8 @@ require('lazy').setup {
     { 'windwp/nvim-autopairs', event = 'InsertEnter', opts = {} },
     require 'lazy.plugins.conform',
     require 'lazy.plugins.indent',
-    require 'lazy.plugins.vim-tmux-navigator',
+    -- require 'lazy.plugins.vim-tmux-navigator',
+    require 'lazy.plugins.smart-splits',
 
     -- Function
     require 'lazy.plugins.snacks',
@@ -34,6 +35,3 @@ require('lazy').setup {
     -- { import = 'lazy.plugins' },
   },
 }
-
--- The line beneath this is called `modeline`. See `:help modeline`
--- vim: ts=2 sts=2 sw=2 et
