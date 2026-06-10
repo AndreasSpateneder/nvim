@@ -172,7 +172,7 @@ return {
           Lua = {},
         },
       },
-      jdtls = {},
+      lemminx = {},
     }
 
     -- Ensure the servers and tools above are installed

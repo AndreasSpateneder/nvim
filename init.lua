@@ -16,6 +16,7 @@ require('lazy').setup {
 
     -- Language Support
     require 'lazy.plugins.lsp',
+    require 'lazy.plugins.nvim-java',
     require 'lazy.plugins.lint',
     -- require 'lazy.plugins.debug',
     require 'lazy.plugins.treesitter',

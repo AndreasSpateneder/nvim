@@ -32,7 +32,7 @@ local function show_diagnostic_on_jump(diagnostic, bufnr)
 end
 
 vim.diagnostic.config {
-  update_in_insert = false,
+  update_in_insert = true,
   severity_sort = true,
   float = { border = 'rounded', source = 'if_many' },
   underline = { severity = { min = vim.diagnostic.severity.WARN } },

@@ -26,3 +26,24 @@ end
 ---@type vim.Option
 local rtp = vim.opt.rtp
 rtp:prepend(lazypath)
+
+-- [[ Refresh Diagnostics Quickfix List ]]
+local function is_qf_open()
+  for _, win in ipairs(vim.api.nvim_list_wins()) do
+    local buf = vim.api.nvim_win_get_buf(win)
+    if vim.bo[buf].buftype == 'quickfix' then
+      return true
+    end
+  end
+  return false
+end
+
+vim.api.nvim_create_autocmd('DiagnosticChanged', {
+  callback = function()
+    if is_qf_open() then
+      vim.diagnostic.setqflist {
+        open = false,
+      }
+    end
+  end,
+})
