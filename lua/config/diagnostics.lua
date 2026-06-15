@@ -64,7 +64,7 @@ vim.diagnostic.config {
   },
 }
 
-vim.keymap.set('n', '<leader>q', function()
+map('n', '<leader>q', function()
   if vim.fn.getloclist(0, { winid = 1 }).winid ~= 0 then
     vim.cmd.lclose()
   else
@@ -72,7 +72,7 @@ vim.keymap.set('n', '<leader>q', function()
   end
 end, { desc = 'Toggle diagnostic [q]uickfix list' })
 
-vim.keymap.set('n', '<leader>Q', function()
+map('n', '<leader>Q', function()
   if vim.fn.getqflist({ winid = 1 }).winid ~= 0 then
     vim.cmd.cclose()
   else
@@ -81,17 +81,17 @@ vim.keymap.set('n', '<leader>Q', function()
 end, { desc = 'Global diagnostic [Q]uickfix list' })
 
 -- -- diagnostic keymaps
--- local diagnostic_goto = function(next, severity)
---   severity = severity and vim.diagnostic.severity[severity] or nil
---   return function()
---     vim.diagnostic.jump { count = next and 1 or -1, float = true, severity = severity }
---   end
--- end
---
--- map('n', '<leader>cd', vim.diagnostic.open_float, { desc = 'Line Diagnostics' })
--- map('n', ']d', diagnostic_goto(true), { desc = 'Next Diagnostic' })
--- map('n', '[d', diagnostic_goto(false), { desc = 'Prev Diagnostic' })
--- map('n', ']e', diagnostic_goto(true, 'ERROR'), { desc = 'Next Error' })
--- map('n', '[e', diagnostic_goto(false, 'ERROR'), { desc = 'Prev Error' })
--- map('n', ']w', diagnostic_goto(true, 'WARN'), { desc = 'Next Warning' })
--- map('n', '[w', diagnostic_goto(false, 'WARN'), { desc = 'Prev Warning' })
+local diagnostic_goto = function(next, severity)
+  severity = severity and vim.diagnostic.severity[severity] or nil
+  return function()
+    vim.diagnostic.jump { count = next and 1 or -1, float = true, severity = severity }
+  end
+end
+
+map('n', '<leader>d', vim.diagnostic.open_float, { desc = 'Line Diagnostics' })
+map('n', '<leader>jd', diagnostic_goto(true), { desc = 'Next Diagnostic' })
+map('n', '<leader>kd', diagnostic_goto(false), { desc = 'Prev Diagnostic' })
+map('n', '<leader>je', diagnostic_goto(true, 'ERROR'), { desc = 'Next Error' })
+map('n', '<leader>ke', diagnostic_goto(false, 'ERROR'), { desc = 'Prev Error' })
+map('n', '<leader>jw', diagnostic_goto(true, 'WARN'), { desc = 'Next Warning' })
+map('n', '<leader>kw', diagnostic_goto(false, 'WARN'), { desc = 'Prev Warning' })

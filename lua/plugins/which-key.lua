@@ -30,6 +30,8 @@ return { -- Useful plugin to show you pending keybinds.
       { '<leader>t', group = '[T]oggle' },
       { '<leader>h', group = 'Git [H]unk', mode = { 'n', 'v' } },
       { '<leader>u', group = 'Color Scheme' },
+      { '<leader>k', group = 'Navigate backward' },
+      { '<leader>j', group = 'Navigate forward' },
     },
     triggers = {
       { '<auto>', mode = 'nixsotc' },

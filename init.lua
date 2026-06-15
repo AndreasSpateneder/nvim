@@ -1,38 +1,34 @@
 -- Configuration
 require 'config'
 
--- Plugins
+-- Bootstrap lazy.nvim
+local lazypath = vim.fn.stdpath 'data' .. '/lazy/lazy.nvim'
+if not (vim.uv or vim.loop).fs_stat(lazypath) then
+  local lazyrepo = 'https://github.com/folke/lazy.nvim.git'
+  local out = vim.fn.system { 'git', 'clone', '--filter=blob:none', '--branch=stable', lazyrepo, lazypath }
+  if vim.v.shell_error ~= 0 then
+    vim.api.nvim_echo({
+      { 'Failed to clone lazy.nvim:\n', 'ErrorMsg' },
+      { out, 'WarningMsg' },
+      { '\nPress any key to exit...' },
+    }, true, {})
+    vim.fn.getchar()
+    os.exit(1)
+  end
+end
+vim.opt.rtp:prepend(lazypath)
+
+-- Setup lazy.nvim
 require('lazy').setup {
-  -- NOTE: Plugins can be added with a link (or for a github repo: 'owner/repo' link).
   spec = {
-    -- Look
-    require 'lazy.theme.catppuccin',
-    require 'lazy.theme.which-key',
-    require 'lazy.theme.gitsigns', -- adds gitsigns recommend keymaps
-    require 'lazy.theme.todo-comments',
-    { 'nvim-tree/nvim-web-devicons', opts = {} },
-    require 'lazy.theme.lualine',
-    { 'nvim-mini/mini.icons', version = false, opts = {} },
-
-    -- Language Support
-    require 'lazy.plugins.lsp',
-    require 'lazy.plugins.nvim-java',
-    require 'lazy.plugins.lint',
-    -- require 'lazy.plugins.debug',
-    require 'lazy.plugins.treesitter',
-    require 'lazy.plugins.autocomplete',
-
-    -- Feel
-    { 'windwp/nvim-autopairs', event = 'InsertEnter', opts = {} },
-    require 'lazy.plugins.conform',
-    require 'lazy.plugins.indent',
-    -- require 'lazy.plugins.vim-tmux-navigator',
-    require 'lazy.plugins.smart-splits',
-
-    -- Function
-    require 'lazy.plugins.snacks',
-    require 'lazy.plugins.picker',
-    require 'lazy.plugins.lazygit',
-    -- { import = 'lazy.plugins' },
+    { import = 'editor' },
+    { import = 'languages' },
+    { import = 'plugins' },
+    { import = 'ui' },
   },
+  -- Configure any other settings here. See the documentation for more details.
+  -- colorscheme that will be used when installing plugins.
+  install = { colorscheme = { 'catppuccin-nvim' } },
+  -- automatically check for plugin updates
+  checker = { enabled = true },
 }

@@ -11,6 +11,7 @@ vim.g.maplocalleader = ' '
 
 -- Set to true if you have a Nerd Font installed and selected in the terminal
 vim.g.have_nerd_font = true
+vim.opt.termguicolors = true
 
 local opt = vim.opt
 
@@ -67,7 +68,7 @@ opt.hidden = true -- Allow hidden buffers
 opt.backspace = 'indent,eol,start' -- Better backspace behavior
 opt.iskeyword:append '-' -- Treat dash as part of word
 opt.path:append '**' -- include subdirectories in search
-opt.selection = 'exclusive' -- Selection behavior
+opt.selection = 'inclusive' -- Selection behavior
 opt.mouse = 'a' -- Enable mouse support
 -- Sync clipboard between OS and Neovim.
 --  Schedule the setting after `UiEnter` because it can increase startup-time.

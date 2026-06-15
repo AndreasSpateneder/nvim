@@ -29,6 +29,7 @@ return {
       'tsx',
       'typst',
       'vue',
+      'xml',
     }
     require('nvim-treesitter').install(parsers)
 
